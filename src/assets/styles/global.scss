@@ -1,0 +1,109 @@
+.complete_bot {
+    position: absolute;
+
+    // left: 5%;
+    margin-left: 5%;
+    right: 5% ;
+    bottom: 15%;
+    max-width: 800px;
+    width: 100%;
+    .chat_icon{
+
+            position: absolute;
+            right: 0;
+            bottom: -50px;
+        img{
+            height: 50px !important;
+        }
+    }
+    .message_body{
+        position: relative;
+        height: 250px;
+        overflow-y: scroll;
+        .user_message{
+            position: absolute;
+            right: 3%;
+            bottom: 0%;
+            .time{
+                display: flex;
+                justify-content: flex-end;
+                }
+        }
+    }
+  }
+  .first_secreen_size{
+      max-width: 450px !important;
+      width: 100% !important;
+  }
+  .second_screen_size{
+      max-width: 550px !important;
+      width: 100% !important;
+      height: 600px;
+  }
+  .calender_screen_size{
+      max-width: 750px !important;
+      width: 100% !important;
+  }
+  .bot_head{
+    max-width: 600px;
+    width: 100%;
+}
+.container{
+    display: flex;
+    flex-wrap: wrap !important;
+    width: 100%;
+    justify-content: stretch;
+    max-height: 150px;
+
+}
+
+.inner_container{
+    .input_container{
+        width: 100%;
+    }
+    .icon_container{
+        max-width: 150px;
+        width: 100%;
+    }
+}
+.slider_comp{
+    width: -webkit-fill-available;
+    
+    button::before{
+        color: gray;
+        
+    }
+   
+}
+.calender-style{
+    max-width: 100px !important;
+    width: 100% !important;
+    height: 80px !important;
+    margin: auto;
+}
+.container-scheduler{
+    border: 1px solid gray;
+    border-radius: 10px;
+    width: 100%;
+    padding: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    input{
+        width: 100%;
+    }
+}
+.text-container{
+
+    width: 100%;
+}
+
+@media (max-width : 590px){
+    .complete_bot{
+        right: 0%;
+    }
+}
+@media (max-width : 355px){
+    .chat_icon{
+        bottom: -60px;
+    }
+}
