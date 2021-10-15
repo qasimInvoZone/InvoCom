@@ -3,15 +3,19 @@ import React,{ useState } from "react";
 import {Link} from 'react-router-dom';
 import '../../assets/styles/global.scss';
 import messageIcon from '../../assets/icons/message-icon.svg';
+import {useHistory} from 'react-router-dom';
 
-const chatBot = () => {
-
+const ChatBot = () => {
+const email = localStorage.getItem('userEmail');
+const history = useHistory();
 // eslint-disable-next-line react-hooks/rules-of-hooks
 const [chat , setChat] = useState(true);
 
 return(
-        <div className="complete_bot first_secreen_size">
-<div className="">
+    <div className="complete_bot first_secreen_size">
+        {!email ? (
+        <>
+            <div className="">
     {chat? 
         <div className=" border border-blue-500 rounded-lg align-bottom p-6  " >
            
@@ -43,11 +47,13 @@ return(
       }
     
 </div>
-<div className="chat_icon">
-  <img onClick={() => setChat(!chat)} src={messageIcon} alt="" />
-</div>
-</div>
+            <div className="chat_icon">
+                <img onClick={() => setChat(!chat)} src={messageIcon} alt="" />
+            </div>
+        </>
+        ) : history.push('/message')}
+    </div>
 );
 }
 
-export default chatBot;
+export default ChatBot;

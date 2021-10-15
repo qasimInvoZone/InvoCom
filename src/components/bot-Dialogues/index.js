@@ -64,15 +64,6 @@ export const BotDialogues4 = () => {
                 console.log(response.status)
                 if (response.status === 200) {
                     localStorage.setItem('userEmail', email)
-                    const entity = 'chat'
-                    const endPoint2 = `${baseUrl}/${apiVersion}/${entity}/user`
-                    const response = await axios.post(endPoint2, { email })
-                    console.log("response", response)
-                    console.log(response.status)
-                    if (response.status === 200) {
-                        setChat(response.data.chat);
-                        console.log(response.data.chat);
-                    }
                 }
             } catch (e) {
                 console.log(e);
@@ -83,7 +74,7 @@ export const BotDialogues4 = () => {
                     <input type="text" placeholder="Email Address" className="input-style" onChange={(e) => { setEmail(e.target.value) }}/><br />
                     <input type="text" placeholder="Full Name" className="input-style mt-2" onChange={(e) => { setFullname(e.target.value) }}/><br />
                     <input type="text" placeholder="Username" className="input-style mt-2" onChange={(e) => { setUsername(e.target.value) }}/><br />
-                    <Link to="/calender">
+                    <Link to="/message">
                     <button className="bg-blue-500 rounded py-1 px-2 mt-2 text-xs text-white" onClick={() => registerUser()}>send</button>
                     </Link>
                 </div>

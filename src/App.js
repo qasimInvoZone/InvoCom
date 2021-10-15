@@ -6,6 +6,7 @@ import secondScreen from './components/second-screen';
 import thirdScreen from './components/third-screen';
 import formScreen from './components/form-screen';
 import CalenderScreen from './components/calender-screen';
+import MessageScreen from './components/message-screen';
 const App = () => {
   return (
     <div className="App">
@@ -31,6 +32,10 @@ const App = () => {
            <Route
             path="/calender"
             component={CalenderScreen}
+          />
+          <Route
+            path="/message"
+            component={MessageScreen}
           />
         </Switch>
       </Router>
