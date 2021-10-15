@@ -13,7 +13,7 @@ const ChatFooter = () => {
         const entity = 'chat'
         const endPoint = `${baseUrl}/${apiVersion}/${entity}/usermessage`
         const chat = JSON.parse(localStorage.getItem('chat'))
-        const chatId = chat[0]._id
+        const chatId = chat._id
         const email = localStorage.getItem('userEmail')
         try {
             const response = await axios.post(endPoint, { email, chatId, message })

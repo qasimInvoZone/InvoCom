@@ -7,11 +7,14 @@ import messageicon from "../../assets/icons/message-icon.svg";
 import '../../assets/styles/global.scss';
 import './index.css';
 import axios from 'axios'
-import socketIOClient from "socket.io-client";
+import { io } from "socket.io-client";
 const MessageScreen = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [chat , setChat] = useState([]);
+  const ENDPOINT = "http://localhost:3000";
+  
   useEffect(() => {
+    const socket = io(ENDPOINT);
     const fetchChats = async () => {
       const baseUrl = 'http://stormy-sierra-19463.herokuapp.com'
       const apiVersion = 'api/v1'
@@ -22,9 +25,9 @@ const MessageScreen = () => {
         const response = await axios.post(endPoint, { email })
         console.log("response", response)
         console.log(response.status)
-        if (response.status === 200) {
+        if (response.status == 200) {
           setChat(response.data.chat[0].messages);
-          localStorage.setItem("chat" , JSON.stringify(response.data.chat))
+          localStorage.setItem("chat" , JSON.stringify(response.data.chat[0]))
           console.log(response.data.chat[0].messages);
         }
       }
