@@ -11,29 +11,33 @@ import { io } from "socket.io-client";
 const MessageScreen = () => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const [chat , setChat] = useState([]);
-  const ENDPOINT = "http://localhost:3000";
-  
-  useEffect(() => {
-    const socket = io(ENDPOINT);
-    const fetchChats = async () => {
-      const baseUrl = 'http://stormy-sierra-19463.herokuapp.com'
-      const apiVersion = 'api/v1'
-      const entity = 'chat'
-      const endPoint = `${baseUrl}/${apiVersion}/${entity}/user`
-      const email = localStorage.getItem('userEmail');
-      if( email ){
-        const response = await axios.post(endPoint, { email })
-        console.log("response", response)
-        console.log(response.status)
-        if (response.status == 200) {
-          setChat(response.data.chat[0].messages);
-          localStorage.setItem("chat" , JSON.stringify(response.data.chat[0]))
-          console.log(response.data.chat[0].messages);
-        }
+  const ENDPOINT = "ws://stormy-sierra-19463.herokuapp.com/socket.io/?EIO=4&transport=websocket"
+  const fetchChats = async () => {
+    const baseUrl = 'http://stormy-sierra-19463.herokuapp.com'
+    const apiVersion = 'api/v1'
+    const entity = 'chat'
+    const endPoint = `${baseUrl}/${apiVersion}/${entity}/user`
+    const email = localStorage.getItem('userEmail');
+    if( email ){
+      const response = await axios.post(endPoint, { email })
+      
+      if (response.status == 200) {
+        setChat(response.data.chat[0].messages);
+        localStorage.setItem("chat" , JSON.stringify(response.data.chat[0]))
+        //console.log(response.data.chat[0].messages);
       }
     }
+    
+  }
+  useEffect(() => {
+    const socket = io(ENDPOINT);
+    
+    socket.on('updatedChat', (data) => {
+      console.log(data)
+    })
+
     fetchChats()
-  }, [axios, setChat])
+  }, [axios, setChat, io])
   const renderChat = (chat) => {
     return chat.map((message) => {
       return  <div className={`message-main ${message.senderName == 'furqan'?   'reciever':'sender'}`}>
